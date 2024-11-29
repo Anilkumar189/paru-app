@@ -1,14 +1,80 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import '../node_modules/bootstrap/dist/js/bootstrap.min'
+import App from './App'; 
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Posts from './features/posts/Posts';
+import ManagerDashboard from './features/manager/ManagerDashboard';
+import CustomerDashboard from './features/customer/CustomerDashboard';
+import AgentDashboard from './features/agent/AgentDashboard';
+import AgentForm from './features/agent/AgentForm';
+import ManagerHome from './features/manager/ManagerHome';
+import AgentHome from './features/agent/AgentHome';
+import AgentDownPaymentForm from './features/agent/AgentDownPaymentForm';
+import CustomerHome from './feactures/customer/CustomerHome';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App></App>,
+    children:[
+      {
+        path:"/manager",
+        element:<ManagerDashboard></ManagerDashboard>,
+        children:[
+          {
+            path:"/manager/",
+            element:<ManagerHome></ManagerHome>
+          }
+        ]
+      },
+      {
+        path:"/customer",
+        element:<CustomerDashboard></CustomerDashboard>,
+        children:[
+          {
+            path:"/customer/",
+            element:<CustomerHome></CustomerHome>
+          }
+        ]
+      },
+      {
+        path:"/agent",
+        element:<AgentDashboard></AgentDashboard>,
+        children:[
+          {
+            path:"/agent/",
+            element:<AgentHome></AgentHome>
+          },
+          {
+            path:"/agent/addLoan",
+            element:<AgentForm></AgentForm>
+          },
+          {
+            path:"/agent/downpaymentForm",
+            element:<AgentDownPaymentForm></AgentDownPaymentForm>
+          }
+        ]
+      },
+      {
+        path:"/posts",
+        element:<Posts></Posts>
+      }
+    ]
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
