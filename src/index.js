@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import '../node_modules/bootstrap/dist/js/bootstrap.min'
+// import '../node_modules/bootstrap/dist/js/bootstrap.min'
 import App from './App'; 
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
@@ -12,13 +12,13 @@ import {
 } from "react-router-dom";
 import Posts from './features/posts/Posts';
 import ManagerDashboard from './features/manager/ManagerDashboard';
-import CustomerDashboard from './features/customer/CustomerDashboard';
+import CustmerDashboard from './features/customer/CustmerDashboard';
 import AgentDashboard from './features/agent/AgentDashboard';
 import AgentForm from './features/agent/AgentForm';
 import ManagerHome from './features/manager/ManagerHome';
 import AgentHome from './features/agent/AgentHome';
 import AgentDownPaymentForm from './features/agent/AgentDownPaymentForm';
-import CustomerHome from './feactures/customer/CustomerHome';
+import CustomerHome from './features/customer/CustomerHome';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/customer",
-        element:<CustomerDashboard></CustomerDashboard>,
+        element:<CustmerDashboard></CustmerDashboard>,
         children:[
           {
             path:"/customer/",
